@@ -52,6 +52,7 @@ return {
         "sqls",
         "svelte-language-server",
         "taplo",
+        "tailwindcss-language-server",
         "terraform-ls",
         "texlab",
         "typescript-language-server",

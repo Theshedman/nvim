@@ -19,6 +19,7 @@
     "lazyvim.plugins.extras.lang.angular",
     "lazyvim.plugins.extras.lang.vue",
     "lazyvim.plugins.extras.lang.svelte",
+    "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.zig",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.dap.core",
