@@ -10,13 +10,13 @@ A LazyVim-based Neovim configuration tailored for backend and full-stack develop
 
 ## Features
 
-- **LazyVim** base with 24 extras (languages, DAP, testing, coding, editor)
+- **LazyVim** base with 25 extras (languages, DAP, testing, coding, editor)
 - **20+ language support** with LSP, formatting, linting, and debugging
 - **Custom JPA Buddy++** tooling — entity parsing, DDL generation, migrations, repository/DTO/controller scaffolding, ERD diagrams
 - **Custom OpenAPI** tooling — Spectral validation, Swagger UI / ReDoc preview, code generation (25+ targets), mock server (Prism)
 - **REST client** (Kulala) with environment support (dev/staging/prod) and HTTP templates
 - **AI integration** via Claude Code
-- **118 mason-managed tools** — 49 LSPs, 19 linters, 18 formatters, 9 debuggers
+- **119 mason-managed tools** — 50 LSPs, 19 linters, 18 formatters, 9 debuggers
 - **Custom snippets** for Java/Spring Boot, JUnit/Mockito, TypeScript/Express/NestJS, and Go
 - **Zen mode**, Harpoon, Neogit, Diffview, Neotest, nvim-coverage, toggleterm, nvim-surround, refactoring.nvim
 
@@ -81,7 +81,7 @@ On first launch, Lazy installs all plugins and Mason installs all configured too
 │   │           │   └── mock-server.lua#  Prism mock server
 │   │           └── utils/
 │   │               └── detection.lua #   OpenAPI file detection
-│   └── plugins/                      # Plugin specs (26 files)
+│   └── plugins/                      # Plugin specs (33 files)
 │       ├── ai.lua                    #   Claude Code
 │       ├── coding.lua                #   Surround, refactoring, dial, LuaSnip
 │       ├── colorscheme.lua           #   Catppuccin (mocha)
@@ -89,9 +89,9 @@ On first launch, Lazy installs all plugins and Mason installs all configured too
 │       ├── editor.lua                #   Zen mode, twilight, UFO folds, auto-save
 │       ├── formatting.lua            #   conform.nvim formatter config
 │       ├── git.lua                   #   Neogit, Diffview, git-blame
-│       ├── lang-*.lua                #   Language-specific configs (12 files)
+│       ├── lang-*.lua                #   Language-specific configs (19 files)
 │       ├── linting.lua               #   nvim-lint linter config
-│       ├── mason-tools.lua           #   Mason tool installer (118 tools)
+│       ├── mason-tools.lua           #   Mason tool installer (119 tools)
 │       ├── navigation.lua            #   Harpoon, Flash, project.nvim
 │       ├── terminal.lua              #   toggleterm
 │       ├── test.lua                  #   Neotest, nvim-coverage
@@ -129,8 +129,9 @@ On first launch, Lazy installs all plugins and Mason installs all configured too
 | Bash / Shell | bash-language-server | shfmt | shellcheck | bash-debug-adapter |
 | SQL | sqls, postgres-language-server | sqlfluff | sqlfluff | — |
 | HTML | html-lsp, emmet-ls, htmx-lsp | prettierd | htmlhint | — |
-| CSS / SCSS | css-lsp, cssmodules-ls | prettierd | stylelint | — |
-| JSON | json-lsp, jsonld-lsp | prettierd | jsonlint | — |
+| CSS / SCSS | css-lsp, css-variables-ls, cssmodules-ls | prettierd | stylelint | — |
+| TailwindCSS | tailwindcss-language-server | — | — | — |
+| JSON | json-lsp, jq-lsp, jsonld-lsp | prettierd | jsonlint | — |
 | YAML | yaml-language-server | yamlfmt | yamllint | — |
 | TOML | taplo | — | — | — |
 | Markdown | marksman | prettierd | markdownlint | — |
@@ -150,7 +151,7 @@ On first launch, Lazy installs all plugins and Mason installs all configured too
 
 The following extras are enabled in `lazyvim.json`:
 
-**Languages:** Java, TypeScript, Go, Python, Rust, C/C++ (clangd), Kotlin (manual), Angular, Vue, Svelte, Zig, JSON, YAML, TOML, Markdown, Docker, Helm, Ansible, Terraform, Git
+**Languages:** Java, TypeScript, Go, Python, Rust, C/C++ (clangd), Kotlin (manual), Angular, Vue, Svelte, Tailwind, Zig, JSON, YAML, TOML, Markdown, Docker, Helm, Ansible, Terraform, Git
 
 **Tooling:** `test.core`, `dap.core`, `coding.luasnip`, `editor.aerial`
 
@@ -308,6 +309,21 @@ The following extras are enabled in `lazyvim.json`:
 | `<leader>jg` | Normal | Go | Modify struct tags |
 | `<leader>ji` | Normal | Go | Implement interface |
 | `<leader>je` | Normal | Go | Insert `if err != nil` |
+| `<leader>js` | Normal | JSON | Sort keys (jq) |
+| `<leader>jm` | Normal | JSON | Minify (jq) |
+| `<leader>jq` | Normal | JSON | Pretty-print (jq) |
+| `<leader>jy` | Normal | YAML | Set schema for buffer |
+| `<leader>ji` | Normal | Terraform | `terraform init` |
+| `<leader>jp` | Normal | Terraform | `terraform plan` |
+| `<leader>jv` | Normal | Terraform | `terraform validate` |
+| `<leader>jt` | Normal | Helm | `helm template` |
+| `<leader>jl` | Normal | Helm | `helm lint` |
+| `<leader>jc` | Normal | CMake | Configure (generate) |
+| `<leader>jb` | Normal | CMake | Build |
+| `<leader>jr` | Normal | CMake | Run |
+| `<leader>jd` | Normal | CMake | Debug |
+| `<leader>js` | Normal | CMake | Select build type |
+| `<leader>jt` | Normal | CMake | Select build target |
 
 ### REST Client (`<leader>r`)
 
