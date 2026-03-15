@@ -1,14 +1,9 @@
 return {
-  -- Java LSP
+  -- Extend the lang.java extra with JPA detection and compile/run keymap
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java" },
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
+    optional = true,
     opts = function(_, opts)
-      -- JPA Buddy++ injection
       local original_on_attach = opts.on_attach
       opts.on_attach = function(client, bufnr)
         if original_on_attach then original_on_attach(client, bufnr) end
@@ -29,19 +24,6 @@ return {
         end, { buffer = bufnr, desc = "Java: Compile and Run" })
       end
       return opts
-    end,
-    config = function(_, opts)
-      local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
-      local config = vim.tbl_deep_extend("force", opts, {
-        cmd = { install_path .. "/bin/jdtls" },
-        root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
-      })
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "java",
-        callback = function()
-          require("jdtls").start_or_attach(config)
-        end,
-      })
     end,
   },
 
