@@ -4,13 +4,9 @@ return {
     "neovim/nvim-lspconfig",
     optional = true,
     opts = function(_, opts)
-      LazyVim.lsp.on_attach(function(client, bufnr)
-        if client.name ~= "terraformls" then
-          return
-        end
-
+      Snacks.util.lsp.on({ name = "terraformls" }, function(buffer, client)
         local map = function(keys, fn, desc)
-          vim.keymap.set("n", keys, fn, { buffer = bufnr, desc = desc })
+          vim.keymap.set("n", keys, fn, { buffer = buffer, desc = desc })
         end
 
         local dir = vim.fn.expand("%:p:h")

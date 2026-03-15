@@ -4,17 +4,13 @@ return {
     "neovim/nvim-lspconfig",
     optional = true,
     opts = function(_, opts)
-      LazyVim.lsp.on_attach(function(client, bufnr)
-        if client.name ~= "helm_ls" then
-          return
-        end
-
+      Snacks.util.lsp.on({ name = "helm_ls" }, function(buffer, client)
         local map = function(keys, fn, desc)
-          vim.keymap.set("n", keys, fn, { buffer = bufnr, desc = desc })
+          vim.keymap.set("n", keys, fn, { buffer = buffer, desc = desc })
         end
 
         local function find_chart_root()
-          local file = vim.api.nvim_buf_get_name(bufnr)
+          local file = vim.api.nvim_buf_get_name(buffer)
           local chart = vim.fs.find("Chart.yaml", { path = vim.fn.fnamemodify(file, ":h"), upward = true })[1]
           if chart then
             return vim.fn.fnamemodify(chart, ":h")

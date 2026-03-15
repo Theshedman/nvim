@@ -7,13 +7,9 @@ return {
       opts.servers = opts.servers or {}
       opts.servers.jqls = {}
 
-      LazyVim.lsp.on_attach(function(client, bufnr)
-        if client.name ~= "jsonls" then
-          return
-        end
-
+      Snacks.util.lsp.on({ name = "jsonls" }, function(buffer, client)
         local map = function(keys, fn, desc)
-          vim.keymap.set("n", keys, fn, { buffer = bufnr, desc = desc })
+          vim.keymap.set("n", keys, fn, { buffer = buffer, desc = desc })
         end
 
         map("<leader>js", function()

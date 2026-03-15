@@ -4,11 +4,7 @@ return {
     "neovim/nvim-lspconfig",
     optional = true,
     opts = function(_, opts)
-      LazyVim.lsp.on_attach(function(client, bufnr)
-        if client.name ~= "yamlls" then
-          return
-        end
-
+      Snacks.util.lsp.on({ name = "yamlls" }, function(buffer, client)
         vim.keymap.set("n", "<leader>jy", function()
           vim.ui.input({ prompt = "YAML schema URL:" }, function(schema)
             if not schema or schema == "" then
@@ -17,14 +13,14 @@ return {
             local params = {
               settings = {
                 yaml = {
-                  schemas = { [schema] = vim.api.nvim_buf_get_name(bufnr) },
+                  schemas = { [schema] = vim.api.nvim_buf_get_name(buffer) },
                 },
               },
             }
             client.notify("workspace/didChangeConfiguration", params)
             vim.notify("Set YAML schema: " .. schema, vim.log.levels.INFO)
           end)
-        end, { buffer = bufnr, desc = "YAML: Set schema for buffer" })
+        end, { buffer = buffer, desc = "YAML: Set schema for buffer" })
       end)
     end,
   },
