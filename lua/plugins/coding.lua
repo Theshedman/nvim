@@ -121,30 +121,31 @@ return {
     end,
   },
 
-  -- LuaSnip config (snippet engine)
+  -- LuaSnip — extend the coding.luasnip extra with custom snippets and keymaps
   {
     "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    optional = true,
     opts = {
       history = true,
       delete_check_events = "TextChanged",
       updateevents = "TextChanged,TextChangedI",
     },
     config = function(_, opts)
-      local luasnip = require("luasnip")
-      luasnip.setup(opts)
+      -- Let the extra's setup run first
+      require("luasnip").setup(opts)
 
-      require("luasnip.loaders.from_vscode").lazy_load()
+      local luasnip = require("luasnip")
+
+      -- Load custom Lua snippets
       require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
 
       luasnip.config.set_config({
         enable_autosnippets = true,
         store_selection_keys = "<Tab>",
-        update_events = "TextChanged,TextChangedI",
       })
 
       -- Filetype extensions
+      luasnip.filetype_extend("go", { "go" })
       luasnip.filetype_extend("java", { "spring-boot", "junit-mockito" })
       luasnip.filetype_extend("typescript", { "express-nestjs" })
       luasnip.filetype_extend("typescriptreact", { "express-nestjs" })
