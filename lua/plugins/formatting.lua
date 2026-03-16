@@ -77,6 +77,9 @@ return {
         -- XML
         xml = { "xmlformatter" },
 
+        -- Assembly
+        asm = { "asmfmt" },
+
         -- Fallback
         ["_"] = { "trim_whitespace" },
       },

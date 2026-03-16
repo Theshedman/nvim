@@ -11,7 +11,7 @@ A LazyVim-based Neovim configuration tailored for backend and full-stack develop
 ## Features
 
 - **LazyVim** base with 25 extras (languages, DAP, testing, coding, editor)
-- **20+ language support** with LSP, formatting, linting, and debugging
+- **21+ language support** with LSP, formatting, linting, and debugging
 - **Custom JPA Buddy++** tooling — entity parsing, DDL generation, migrations, repository/DTO/controller scaffolding, ERD diagrams
 - **Custom OpenAPI** tooling — Spectral validation, Swagger UI / ReDoc preview, code generation (25+ targets), mock server (Prism)
 - **REST client** (Kulala) with environment support (dev/staging/prod) and HTTP templates
@@ -145,6 +145,7 @@ On first launch, Lazy installs all plugins and Mason installs all configured too
 | Vue | vue-language-server | prettierd | eslint_d | — |
 | Svelte | svelte-language-server | prettierd | eslint_d | — |
 | AsciiDoc | — (treesitter) | — | — | — |
+| Assembly (NASM/GAS) | asm-lsp | asmfmt | — | — |
 | Kubernetes | helm-ls | — | — | — |
 
 ## LazyVim Extras
@@ -324,6 +325,9 @@ The following extras are enabled in `lazyvim.json`:
 | `<leader>jd` | Normal | CMake | Debug |
 | `<leader>js` | Normal | CMake | Select build type |
 | `<leader>jt` | Normal | CMake | Select build target |
+| `<leader>ja` | Normal | Assembly | Assemble (NASM/GAS) |
+| `<leader>jl` | Normal | Assembly | Link object file |
+| `<leader>jr` | Normal | Assembly | Assemble + Link + Run |
 
 ### REST Client (`<leader>r`)
 
